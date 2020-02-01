@@ -63,4 +63,10 @@ public class PlayerController : MonoBehaviour
         _animator.SetFloat("yDir", direction.y);
         print(_animator.GetFloat("xDir"));
     }
+
+    private void takeDamage(int amount)
+    {
+        // Decrease the player's HP by a certain amount
+        
+    }
 }
