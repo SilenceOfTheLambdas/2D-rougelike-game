@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
+using System.Globalization;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance = null;
+    [SerializeField] private float _scoreMultiplier = 2f;
+    public float _score = 0f; // The player's score; this is a combination of the enemies killed - Time.deltaTime * multiplier
     
-    [Header("Player options")] [Space] [SerializeField]
-    private float playerHP;
+    [FormerlySerializedAs("playerHP")] [Header("Player options")] [Space] [SerializeField]
+    public float playerHp;
 
-    private bool playerDead;
+    [Header("User Interface")] public TextMeshProUGUI ui_object;
 
     private void Awake()
     {
@@ -24,11 +28,31 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(this);
     }
 
-    void GameOver()
+    private void Start()
     {
-        if (playerDead)
-            SceneManager.LoadScene("DeathScreen");
+        UpdateScoreUi();
+        StartCoroutine(updatePlayerScore());
+    }
+
+    // Score UI manager
+    void UpdateScoreUi()
+    {
+        ui_object.text = _score.ToString();
+    }
+
+    public static void GameOver()
+    {
+        SceneManager.LoadScene("DeathScreen");
+    }
+
+    IEnumerator updatePlayerScore()
+    {
+        yield return new WaitForSeconds(10);
+        _score += _scoreMultiplier;
+        UpdateScoreUi();
+        StartCoroutine(updatePlayerScore());
     }
 }

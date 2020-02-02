@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public float speed = 0.5f;
-    private Vector2 direction;
+    private Vector2 _direction;
     private Animator _animator;
+    private static readonly int XDir = Animator.StringToHash("xDir");
+    private static readonly int YDir = Animator.StringToHash("yDir");
 
     private void Start()
     {
@@ -22,11 +21,11 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(direction * (speed * Time.deltaTime));
+        transform.Translate(_direction * (speed * Time.deltaTime));
 
-        if (direction.x != 0 || direction.y != 0)
+        if (_direction.x != 0 || _direction.y != 0)
         {
-            SetAnimatorMovement(direction);   
+            SetAnimatorMovement(_direction);
         }
         else
         {
@@ -36,37 +35,37 @@ public class PlayerController : MonoBehaviour
 
     private void TakeInput()
     {
-        direction = Vector2.zero;
+        _direction = Vector2.zero;
 
         if (Input.GetKey(KeyCode.W))
         {
-            direction += Vector2.up;
+            _direction += Vector2.up;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            direction += Vector2.left;
+            _direction += Vector2.left;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            direction += Vector2.down;
+            _direction += Vector2.down;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            direction += Vector2.right;
+            _direction += Vector2.right;
         }
     }
 
-    private void SetAnimatorMovement(Vector2 direction)
+    private void SetAnimatorMovement(Vector2 d)
     {
         _animator.SetLayerWeight(1, 1); // Set the layer animation to 1, so it plays
-        _animator.SetFloat("xDir", direction.x);
-        _animator.SetFloat("yDir", direction.y);
-        print(_animator.GetFloat("xDir"));
+        _animator.SetFloat(XDir, d.x);
+        _animator.SetFloat(YDir, d.y);
     }
 
-    private void takeDamage(int amount)
+    public static void TakeDamage(float amount)
     {
         // Decrease the player's HP by a certain amount
-        
+        GameManager.instance.playerHp -= amount;
+        if (GameManager.instance.playerHp <= 0) GameManager.GameOver();
     }
 }

@@ -8,12 +8,8 @@ public class TestEnemyProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag != "Enemy")
-        {
-            // TODO:
-            // if (collision.GetComponent<>() == null) return;
-            // collision.GetComponent<EnemyRevieveDamage>().dealDamage(damage);
-            // Destroy(gameObject);
-        }
+        if (collision.GetComponent<PlayerController>() == null) return;
+            PlayerController.TakeDamage(damage);
+            Destroy(gameObject);
     }
 }

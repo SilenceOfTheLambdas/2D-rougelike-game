@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyRevieveDamage : MonoBehaviour
 {
 
+    public GameObject healthBar;
+    public Slider healthBarSlider;
     private float _health;
 
     public float maxHealth;
@@ -15,7 +18,9 @@ public class EnemyRevieveDamage : MonoBehaviour
 
     public void dealDamage(float damage)
     {
+        healthBar.SetActive(true);
         _health -= damage;
+        healthBarSlider.value = _health;
         CheckDeath();
     }
 
