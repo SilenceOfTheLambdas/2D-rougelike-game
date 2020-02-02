@@ -65,7 +65,8 @@ public class PlayerController : MonoBehaviour
     public static void TakeDamage(float amount)
     {
         // Decrease the player's HP by a certain amount
-        GameManager.instance.playerHp -= amount;
-        if (GameManager.instance.playerHp <= 0) GameManager.GameOver();
+        GameManager.Instance.playerHp -= amount;
+        GameManager.Instance.setPlayerUI();
+        if (GameManager.Instance.playerHp <= 0) GameManager.GameOver();
     }
 }
