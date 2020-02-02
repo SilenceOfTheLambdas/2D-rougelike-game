@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyRevieveDamage : MonoBehaviour
+public class EnemyReceiveDamage : MonoBehaviour
 {
 
+    [Header("Enemy Options")] [Space]
     public GameObject healthBar;
     public Slider healthBarSlider;
     private float _health;
+    public GameManager.EnemyTypes enemyType;
 
     public float maxHealth;
     
@@ -16,7 +18,7 @@ public class EnemyRevieveDamage : MonoBehaviour
         _health = maxHealth;
     }
 
-    public void dealDamage(float damage)
+    public void DealDamage(float damage)
     {
         healthBar.SetActive(true);
         _health -= damage;
@@ -25,7 +27,7 @@ public class EnemyRevieveDamage : MonoBehaviour
     }
 
     private void CheckOverheal()
-    { // Check to see if the player is already at max health (so they don't overheal)
+    { // Check to see if the player is already at max health (so they don't over-heal)
         if (_health > maxHealth)
         {
             _health = maxHealth;
@@ -36,6 +38,7 @@ public class EnemyRevieveDamage : MonoBehaviour
     {
         if (_health <= 0)
         {
+            GameManager.Instance.OnKill(enemyType);
             Destroy(gameObject);
         }
     }

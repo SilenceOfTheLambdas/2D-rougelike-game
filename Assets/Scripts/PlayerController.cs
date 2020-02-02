@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private static readonly int facingRight = Animator.StringToHash("FacingRight");
 
     /*Player Enum showing which direction the player is facing*/
-    private enum Facing
+    public enum Facing
     {
         Up,
         Down,
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
         Right
     }
 
-    [SerializeField]private Facing facingDirection = Facing.Down; // The default direction the player is facing
+    [SerializeField]public Facing facingDirection = Facing.Down; // The default direction the player is facing
     
     private void Start()
     {
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
     {
         // Decrease the player's HP by a certain amount
         GameManager.Instance.playerHp -= amount;
-        GameManager.Instance.setPlayerUI();
+        GameManager.Instance.SetPlayerUi();
         if (GameManager.Instance.playerHp <= 0) GameManager.GameOver();
     }
 }

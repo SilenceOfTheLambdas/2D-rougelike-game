@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Pathfinding;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private Vector2 direction;
+    private Vector2 _direction;
     private Animator _animator;
     public AIPath aiPath;
     private static readonly int XDir = Animator.StringToHash("xDir");

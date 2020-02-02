@@ -20,7 +20,7 @@ public class BasicSpell : MonoBehaviour
             Vector2 myPos = transform.position;
             var direction = (mousePosition - myPos).normalized;
             spell.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
-            spell.GetComponent<TestProjectile>().damage = Random.Range(minDamage, maxDamage);
+            spell.GetComponent<Projectile>().damage = Random.Range(minDamage, maxDamage);
         }
     }
 }
