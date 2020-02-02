@@ -210,10 +210,9 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="BasicSpell.cs" t="Include" />
+          <e p="EnemyController.cs" t="Include" />
           <e p="EnemyMovement.cs" t="Include" />
           <e p="EnemyProjectile.cs" t="Include" />
-          <e p="EnemyReceiveDamage.cs" t="Include" />
-          <e p="EnemyShooting.cs" t="Include" />
           <e p="FollowPlayer.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="PlayerAbilities.cs" t="Include" />
