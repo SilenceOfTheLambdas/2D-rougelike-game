@@ -613,6 +613,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -1502164350410896891, guid: 7daef08b728e2a549ba7710ad1de0151,
         type: 3}
+    - target: {fileID: 5223136100684265643, guid: ceff1a9cb6eb700478dcc45f5fee5cfc,
+        type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 106286928574806035, guid: 9e11957494633c34090a88615dbb9288,
+        type: 3}
     - target: {fileID: 6124327565076557844, guid: ceff1a9cb6eb700478dcc45f5fee5cfc,
         type: 3}
       propertyPath: m_IsActive

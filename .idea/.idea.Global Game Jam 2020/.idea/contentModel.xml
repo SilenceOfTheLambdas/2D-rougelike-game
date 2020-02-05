@@ -210,14 +210,14 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="BasicSpell.cs" t="Include" />
+          <e p="Enemy_Projectile.cs" t="Include" />
           <e p="EnemyController.cs" t="Include" />
           <e p="EnemyMovement.cs" t="Include" />
-          <e p="EnemyProjectile.cs" t="Include" />
           <e p="FollowPlayer.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
+          <e p="Player_Projectile.cs" t="Include" />
           <e p="PlayerAbilities.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
-          <e p="Projectile.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
