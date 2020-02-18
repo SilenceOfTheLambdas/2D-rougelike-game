@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 
@@ -16,10 +17,19 @@ namespace Pathfinding {
 	public class AIDestinationSetter : VersionedMonoBehaviour {
 		/// <summary>The object that the AI should move to</summary>
 		public Transform target;
+		public float seekRadius; // The radius in which the enemy will 'see' the player
+		public GameObject player;
+		public GameObject enemy;
+		
 		IAstarAI ai;
+		private bool _playerInRange;
+		public CircleCollider2D Collider2D;
 
 		void OnEnable () {
 			ai = GetComponent<IAstarAI>();
+			// Set the radius of the collider 2D
+			Collider2D.radius = seekRadius;
+			Collider2D.isTrigger = true;
 			// Update the destination right before searching for a path as well.
 			// This is enough in theory, but this script will also update the destination every
 			// frame as the destination is used for debugging and may be used for other things by other
@@ -31,9 +41,17 @@ namespace Pathfinding {
 			if (ai != null) ai.onSearchPath -= Update;
 		}
 
+		private void OnTriggerEnter2D(Collider2D collision)
+		{
+			if (player != null) _playerInRange = true;
+		}
+
 		/// <summary>Updates the AI's destination every frame</summary>
 		void Update () {
-			if (target != null && ai != null) ai.destination = target.position;
+			if (target != null && ai != null && _playerInRange)
+			{
+				ai.destination = target.position;
+			}
 		}
 	}
 }

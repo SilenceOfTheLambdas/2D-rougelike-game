@@ -5,12 +5,11 @@ public class PlayerController : MonoBehaviour
     public float speed = 0.5f;
     private Vector2 _direction;
     private Animator _animator;
-    private static readonly int XDir = Animator.StringToHash("xDir");
-    private static readonly int YDir = Animator.StringToHash("yDir");
-    private static readonly int facingDown = Animator.StringToHash("FacingDown");
-    private static readonly int facingUp = Animator.StringToHash("FacingUp");
-    private static readonly int facingLeft = Animator.StringToHash("FacingLeft");
-    private static readonly int facingRight = Animator.StringToHash("FacingRight");
+
+    private static readonly int FacingDown = Animator.StringToHash("FacingDown");
+    private static readonly int FacingUp = Animator.StringToHash("FacingUp");
+    private static readonly int FacingLeft = Animator.StringToHash("FacingLeft");
+    private static readonly int FacingRight = Animator.StringToHash("FacingRight");
 
     /*Player Enum showing which direction the player is facing*/
     public enum Facing
@@ -81,10 +80,10 @@ public class PlayerController : MonoBehaviour
     private void SetAnimatorMovement(Facing direction)
     {
         _animator.SetLayerWeight(1, 1); // Set the layer animation to 1, so it plays
-        _animator.SetBool(facingLeft, direction == Facing.Left);
-        _animator.SetBool(facingRight, direction == Facing.Right);
-        _animator.SetBool(facingDown, direction == Facing.Down);
-        _animator.SetBool(facingUp, direction == Facing.Up);
+        _animator.SetBool(FacingLeft, direction == Facing.Left);
+        _animator.SetBool(FacingRight, direction == Facing.Right);
+        _animator.SetBool(FacingDown, direction == Facing.Down);
+        _animator.SetBool(FacingUp, direction == Facing.Up);
     }
 
     public static void TakeDamage(float amount)
